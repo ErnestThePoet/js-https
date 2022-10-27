@@ -1,0 +1,22 @@
+{
+  "name": "js-https",
+  "version": "1.0.0",
+  "description": "A JavaScript library to make HTTP Ajax safer.",
+  "main": "index.js",
+  "author": "Ernest Cui <ecuiships@126.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "crypto-random-string": "^5.0.0",
+    "jsencrypt": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.1.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0"
+  }
+}
