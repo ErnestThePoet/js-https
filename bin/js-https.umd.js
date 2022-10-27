@@ -1,26 +1,24 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var JSEncrypt = require('jsencrypt');
-var cryptoRandomString = require('crypto-random-string');
-var CryptoJS = require('crypto-js');
+(function (global, factory) {
+typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('jsencrypt'), require('crypto-random-string'), require('crypto-es')) :
+typeof define === 'function' && define.amd ? define(['jsencrypt', 'crypto-random-string', 'crypto-es'], factory) :
+(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global["js-https"] = factory(global.JSEncrypt, global.cryptoRandomString, global.CryptoES));
+})(this, (function (JSEncrypt, cryptoRandomString, CryptoES) { 'use strict';
 
 function aesEncrypt(text, aesKey, aesIv) {
-  var cipherObj = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(text), CryptoJS.enc.Utf8.parse(aesKey), {
-    iv: CryptoJS.enc.Utf8.parse(aesIv),
-    mode: CryptoJS.mode.CBC,
-    padding: CryptoJS.pad.Pkcs7
+  var cipherObj = CryptoES.AES.encrypt(CryptoES.enc.Utf8.parse(text), CryptoES.enc.Utf8.parse(aesKey), {
+    iv: CryptoES.enc.Utf8.parse(aesIv),
+    mode: CryptoES.mode.CBC,
+    padding: CryptoES.pad.Pkcs7
   });
-  return cipherObj.ciphertext.toString(CryptoJS.enc.Base64);
+  return cipherObj.ciphertext.toString(CryptoES.enc.Base64);
 }
 function aesDecrypt(text, aesKey, aesIv) {
-  var plainTextObj = CryptoJS.AES.decrypt(text, CryptoJS.enc.Utf8.parse(aesKey), {
-    iv: CryptoJS.enc.Utf8.parse(aesIv),
-    mode: CryptoJS.mode.CBC,
-    padding: CryptoJS.pad.Pkcs7
+  var plainTextObj = CryptoES.AES.decrypt(text, CryptoES.enc.Utf8.parse(aesKey), {
+    iv: CryptoES.enc.Utf8.parse(aesIv),
+    mode: CryptoES.mode.CBC,
+    padding: CryptoES.pad.Pkcs7
   });
-  return plainTextObj.toString(CryptoJS.enc.Utf8);
+  return plainTextObj.toString(CryptoES.enc.Utf8);
 }
 
 /**
@@ -82,5 +80,6 @@ var JsHttps = /** @class */function () {
   return JsHttps;
 }();
 
-exports.JsHttps = JsHttps;
-exports.default = JsHttps;
+return JsHttps;
+
+}));

@@ -1,22 +1,22 @@
 import JSEncrypt from 'jsencrypt';
 import cryptoRandomString from 'crypto-random-string';
-import CryptoJS from 'crypto-js';
+import CryptoES from 'crypto-es';
 
 function aesEncrypt(text, aesKey, aesIv) {
-  var cipherObj = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(text), CryptoJS.enc.Utf8.parse(aesKey), {
-    iv: CryptoJS.enc.Utf8.parse(aesIv),
-    mode: CryptoJS.mode.CBC,
-    padding: CryptoJS.pad.Pkcs7
+  var cipherObj = CryptoES.AES.encrypt(CryptoES.enc.Utf8.parse(text), CryptoES.enc.Utf8.parse(aesKey), {
+    iv: CryptoES.enc.Utf8.parse(aesIv),
+    mode: CryptoES.mode.CBC,
+    padding: CryptoES.pad.Pkcs7
   });
-  return cipherObj.ciphertext.toString(CryptoJS.enc.Base64);
+  return cipherObj.ciphertext.toString(CryptoES.enc.Base64);
 }
 function aesDecrypt(text, aesKey, aesIv) {
-  var plainTextObj = CryptoJS.AES.decrypt(text, CryptoJS.enc.Utf8.parse(aesKey), {
-    iv: CryptoJS.enc.Utf8.parse(aesIv),
-    mode: CryptoJS.mode.CBC,
-    padding: CryptoJS.pad.Pkcs7
+  var plainTextObj = CryptoES.AES.decrypt(text, CryptoES.enc.Utf8.parse(aesKey), {
+    iv: CryptoES.enc.Utf8.parse(aesIv),
+    mode: CryptoES.mode.CBC,
+    padding: CryptoES.pad.Pkcs7
   });
-  return plainTextObj.toString(CryptoJS.enc.Utf8);
+  return plainTextObj.toString(CryptoES.enc.Utf8);
 }
 
 /**
@@ -78,4 +78,4 @@ var JsHttps = /** @class */function () {
   return JsHttps;
 }();
 
-export { JsHttps, JsHttps as default };
+export { JsHttps as default };
