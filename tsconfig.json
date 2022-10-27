@@ -1,21 +1,13 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": false,
-    "noImplicitAny": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution":"Node",
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true
+    "declaration": true,
+    "outDir": "./lib",
+    "strict": true
   },
-  "include": ["lib","lib/js-https.ts"],
+  "include": ["lib/*.ts","lib/**/*.ts"],
   "exclude": ["node_modules"]
 }

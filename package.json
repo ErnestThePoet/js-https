@@ -2,7 +2,9 @@
   "name": "js-https",
   "version": "1.0.0",
   "description": "A JavaScript library to make HTTP Ajax safer.",
-  "main": "index.js",
+  "main": "bin/index.js",
+  "module": "bin/index.js",
+  "types": "bin/index.d.ts",
   "author": "Ernest Cui <ecuiships@126.com>",
   "license": "MIT",
   "private": false,
@@ -15,7 +17,7 @@
     "url": "https://github.com/ErnestThePoet/js-https/issues"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "rollup -c"
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
@@ -23,8 +25,13 @@
     "jsencrypt": "^3.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@rollup/plugin-babel": "^6.0.2",
+    "@rollup/plugin-typescript": "^9.0.2",
     "@types/crypto-js": "^4.1.1",
-    "typescript": "^4.8.4",
-    "webpack": "^5.74.0"
+    "rollup": "^3.2.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.4"
   }
 }

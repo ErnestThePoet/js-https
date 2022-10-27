@@ -1,4 +1,4 @@
-import JsHttps from "./lib/js-https";
+import JsHttps from "./js-https";
 
 export { JsHttps };
 export default JsHttps;
