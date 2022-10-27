@@ -16,6 +16,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["crypto","index.ts"],
+  "include": ["lib","lib/js-https.ts"],
   "exclude": ["node_modules"]
 }

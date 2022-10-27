@@ -6,6 +6,14 @@
   "author": "Ernest Cui <ecuiships@126.com>",
   "license": "MIT",
   "private": false,
+  "homepage": "https://github.com/ErnestThePoet/js-https",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ErnestThePoet/js-https.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ErnestThePoet/js-https/issues"
+  },
   "scripts": {
     "build": "tsc"
   },
