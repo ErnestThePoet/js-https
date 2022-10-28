@@ -1,6 +1,6 @@
 {
   "name": "js-https",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A JavaScript library to make HTTP Ajax safer.",
   "main": "bin/js-https.js",
   "module": "bin/js-https.js",
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
+    "@babel/preset-env": "^7.19.4",
     "@rollup/plugin-babel": "^6.0.2",
     "@rollup/plugin-commonjs": "^23.0.2",
     "@rollup/plugin-node-resolve": "^15.0.1",

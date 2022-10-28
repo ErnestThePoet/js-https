@@ -1,9 +1,10 @@
 # js-https
 
-This project aims to help HTTP Ajax data transport safer by simulating what HTTPS does.
+This project aims to make HTTP Ajax data transport safer by imitating what HTTPS does.
 
 [![npm version](https://img.shields.io/npm/v/js-https.svg?style=flat-square)](https://www.npmjs.org/package/js-https)
 [![install size](https://img.shields.io/badge/dynamic/json?url=https://packagephobia.com/v2/api.json?p=js-https&query=$.install.pretty&label=install%20size&style=flat-square)](https://packagephobia.now.sh/result?p=js-https)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/js-https?style=flat-square)](https://bundlephobia.com/package/js-https@latest)
 [![npm downloads](https://img.shields.io/npm/dm/js-https.svg?style=flat-square)](https://npm-stat.com/charts.html?package=js-https)
 
 ## Getting Started
@@ -20,11 +21,11 @@ yarn add js-https
 
 Import directly in browser:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/js-https@1.0.2/dist/js-https.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-https@1.0.4/dist/js-https.min.js"></script>
 ```
 Or
 ```html
-<script src="https://unpkg.com/browse/js-https@1.0.2/dist/js-https.min.js"></script>
+<script src="https://unpkg.com/browse/js-https@1.0.4/dist/js-https.min.js"></script>
 ```
 
 ### Overview
@@ -32,9 +33,10 @@ Now let's gain an insight as of how js-https works to provide safety. Js-https i
 ```
 BROWSER                                    SERVER
    |                                          |
-   | 1). Request site public key              |
+   | 1). Request site certificate             |
+   |  (including public key)                  |
    |----------------------------------------->|
-   | 2). Public key                           |
+   | 2). Site certificate                     |
    |<-----------------------------------------|
    |                                          |
    | 3). Browser calls encryptRequestData()   |
@@ -66,7 +68,7 @@ BROWSER                                    SERVER
    
 ```
 
-The above steps 1) and 2) are not part of js-https and in practice needs certification verification to authenticate the validity of public key. To keep things simple, in this guide we will omit these steps and make public key directly available in our code.
+The above steps 1) and 2) are not part of js-https and browser needs to verify the certificate to ensure its authority. To keep things simple, in this guide we will omit these two steps and make public key directly available in our code.
 
 As is illustrated, in order to work properly, js-https requires the backend server to perform RSA-decryption and AES-encryption for each request. You can find a working backend demo [here](https://github.com/ErnestThePoet/js-https-backend-demo).
 
@@ -161,8 +163,8 @@ It's recommended to use a dedicated `JsHttps` object for each request, and call 
 
 ## Safety Details
 
-The AES encryption uses CBC mode with 128-bit key size.  
-The RSA encryption used ECB mode with your given key size. Typically 2048-bit key size is recommended.
+The AES encryption uses CBC mode with 128-bit key size, with PKCS #7 padding mode.  
+The key size for RSA encryption should be at lease 2048 bits, as is [recommended](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57Pt3r1.pdf) by NIST since 2015. In js-https it should be just 2048 bits for performance.
 
 ## Credits
 

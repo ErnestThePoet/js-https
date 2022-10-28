@@ -14,7 +14,7 @@ export default [
         },
         plugins: [
             typescript(),
-            babel({ extensions: ['.ts'] })
+            babel({ extensions: ['.ts', '.js'] })
         ],
     },
 
@@ -29,9 +29,12 @@ export default [
         },
         plugins: [
             nodeResolve({ browser: true }),
+            babel({
+                extensions: ['.ts', '.js'],
+                presets: ['@babel/preset-env'] // ensure ES5
+            }),
             typescript({ declaration: false }),
             commonjs(),
-            babel({ extensions: ['.ts'] }),
             terser()
         ],
     },
@@ -45,7 +48,7 @@ export default [
         },
         plugins: [
             typescript(),
-            babel({ extensions: ['.ts'] })
+            babel({ extensions: ['.ts', '.js'] })
         ],
     },
 ]
