@@ -19,7 +19,7 @@ npm install js-https
 yarn add js-https
 ```
 
-Import directly in browser:
+Or include directly in browser:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/js-https@1.0.5/dist/js-https.min.js"></script>
 ```
