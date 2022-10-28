@@ -66,7 +66,7 @@ BROWSER                                    SERVER
 
 The above steps 1) and 2) are not part of js-https and browser needs to verify the certificate to ensure its authority. To keep things simple, in this guide we will omit these two steps and make public key directly available in our code.
 
-As is illustrated above, in order to get things working, js-https requires the backend server to perform RSA-decryption and AES-encryption for each request. You can find our backend demo with Springboot [here](https://github.com/ErnestThePoet/js-https-backend-demo) and one with Django [here](https://github.com/ErnestThePoet/js-https-backend-demo-django).
+As is illustrated above, in order to get things working, js-https requires the backend server to perform RSA-decryption, AES-decryption and AES-encryption for each request. You can find our backend demo with Springboot [here](https://github.com/ErnestThePoet/js-https-backend-demo) and one with Django [here](https://github.com/ErnestThePoet/js-https-backend-demo-django).
 
 ### Generating RSA Keys
 To get an RSA public/private key pair, you can take advantage of OpenSSL:
@@ -87,7 +87,8 @@ The usage is as simple as follows:
 
 ```javascript
 // If you use <script> to include CDN(UMD) version of js-https,
-// just remove these imports
+// just remove these imports. You will have direct access to 
+// the global variable JsHttps.
 import axios from "axios";
 import JsHttps from "js-https";
 
