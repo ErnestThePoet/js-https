@@ -1,6 +1,6 @@
 # js-https
 
-This project aims to make HTTP Ajax data transport safer by imitating what HTTPS does.
+This project aims to make HTTP Ajax data transmission safer by imitating HTTPS.
 
 [![npm version](https://img.shields.io/npm/v/js-https.svg?style=flat-square)](https://www.npmjs.org/package/js-https)
 [![install size](https://img.shields.io/badge/dynamic/json?url=https://packagephobia.com/v2/api.json?p=js-https&query=$.install.pretty&label=install%20size&style=flat-square)](https://packagephobia.now.sh/result?p=js-https)
@@ -25,7 +25,7 @@ Or include directly in browser:
 ```
 
 ### Overview
-Now let's gain an insight as of how js-https works to provide safety. Js-https imitates HTTPS with the following workflow:
+Now let's gain an insight into how js-https works to provide safety. Imitating HTTPS, js-https has the following workflow:
 ```
 BROWSER                                    SERVER
    |                                          |
@@ -66,7 +66,7 @@ BROWSER                                    SERVER
 
 The above steps 1) and 2) are not part of js-https and browser needs to verify the certificate to ensure its authority. To keep things simple, in this guide we will omit these two steps and make public key directly available in our code.
 
-As is illustrated, in order to work properly, js-https requires the backend server to perform RSA-decryption and AES-encryption for each request. You can find a working backend demo with Springboot [here](https://github.com/ErnestThePoet/js-https-backend-demo) and one with Django [here](https://github.com/ErnestThePoet/js-https-backend-demo-django).
+As is illustrated above, in order to get things working, js-https requires the backend server to perform RSA-decryption and AES-encryption for each request. You can find our backend demo with Springboot [here](https://github.com/ErnestThePoet/js-https-backend-demo) and one with Django [here](https://github.com/ErnestThePoet/js-https-backend-demo-django).
 
 ### Generating RSA Keys
 To get an RSA public/private key pair, you can take advantage of OpenSSL:
@@ -83,7 +83,7 @@ openssl rsa -in private.pem -pubout -out public.pem
 Make sure to keep your **private key** a top-secret!
 
 ### Usage
-Then the usage is as simple as follows:
+The usage is as simple as follows:
 
 ```javascript
 // If you use <script> to include CDN(UMD) version of js-https,
@@ -125,7 +125,7 @@ function safeRequest(){
 }
 ```
 
-With a correctly implemented backend server, you should see the actual response data in the console, just as what you would see without js-https.  
+With a correctly implemented backend server, you should see the actual response data in the browser console, just as what it is without js-https.  
 If you run either of our backend demo implementations, you will also see the decrypted request data in your Springboot or Django terminal.
 
 ## API
@@ -165,8 +165,8 @@ The key size for RSA encryption should be at lease 2048 bits, as is [recommended
 
 ## Credits
 
-This utility wouldn't have been possible without these great open-source projects: [brix/crypto-js](https://github.com/brix/crypto-js), [entronad/
-crypto-es](https://github.com/entronad/crypto-es), [travist/jsencrypt](https://github.com/travist/jsencrypt), [
+Js-https wouldn't have been possible without these great open-source projects: [brix/crypto-js](https://github.com/brix/crypto-js), [entronad/
+crypto-es](https://github.com/entronad/crypto-es), [travist/jsencrypt](https://github.com/travist/jsencrypt) and [
 sindresorhus/crypto-random-string](https://github.com/sindresorhus/crypto-random-string).
 
 ## Notes on Build
