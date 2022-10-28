@@ -70,7 +70,7 @@ BROWSER                                    SERVER
 
 The above steps 1) and 2) are not part of js-https and browser needs to verify the certificate to ensure its authority. To keep things simple, in this guide we will omit these two steps and make public key directly available in our code.
 
-As is illustrated, in order to work properly, js-https requires the backend server to perform RSA-decryption and AES-encryption for each request. You can find a working backend demo [here](https://github.com/ErnestThePoet/js-https-backend-demo).
+As is illustrated, in order to work properly, js-https requires the backend server to perform RSA-decryption and AES-encryption for each request. You can find a working backend demo with Springboot [here](https://github.com/ErnestThePoet/js-https-backend-demo) and one with Django [here](https://github.com/ErnestThePoet/js-https-backend-demo-django).
 
 ### Generating RSA Keys
 To get an RSA public/private key pair, you can take advantage of OpenSSL:
@@ -78,8 +78,7 @@ To get an RSA public/private key pair, you can take advantage of OpenSSL:
 ```bash
 # 2048-bit key size is recommended
 openssl genrsa -out private-orig.pem 2048
-# If you use javax.crypto.Cipher in your backend, 
-# it is necessary to convert to PKCS#8 format key
+# Our backend demo needs PKCS#8 format key, so convert the key
 openssl pkcs8 -topk8 -inform PEM -in private-orig.pem -outform pem -nocrypt -out private.pem
 # Get public key from private key
 openssl rsa -in private.pem -pubout -out public.pem
@@ -91,6 +90,8 @@ Make sure to keep your **private key** a top-secret!
 Then the usage is as simple as follows:
 
 ```javascript
+// If you use <script> to include CDN(UMD) version of js-https,
+// just remove these imports
 import axios from "axios";
 import JsHttps from "js-https";
 
@@ -129,7 +130,7 @@ function safeRequest(){
 ```
 
 With a correctly implemented backend server, you should see the actual response data in the console, just as what you would see without js-https.  
-If you run our demo backend implementation, you will also see the decrypted request data in your Springboot terminal.
+If you run either of our backend demo implementations, you will also see the decrypted request data in your Springboot or Django terminal.
 
 ## API
 
