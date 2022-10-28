@@ -21,11 +21,7 @@ yarn add js-https
 
 Import directly in browser:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/js-https@1.0.4/dist/js-https.min.js"></script>
-```
-Or
-```html
-<script src="https://unpkg.com/browse/js-https@1.0.4/dist/js-https.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-https@1.0.5/dist/js-https.min.js"></script>
 ```
 
 ### Overview
