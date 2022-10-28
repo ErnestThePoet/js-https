@@ -1,6 +1,6 @@
 {
   "name": "js-https",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A JavaScript library to make HTTP Ajax safer.",
   "main": "bin/js-https.js",
   "module": "bin/js-https.js",
