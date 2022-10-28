@@ -1,6 +1,6 @@
 {
   "name": "js-https",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A JavaScript library to make HTTP Ajax safer.",
   "main": "bin/js-https.js",
   "module": "bin/js-https.js",
@@ -28,8 +28,11 @@
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@rollup/plugin-babel": "^6.0.2",
+    "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^9.0.2",
     "rollup": "^3.2.3",
+    "rollup-plugin-terser": "^7.0.2",
     "tslib": "^2.4.0",
     "typescript": "^4.8.4"
   }

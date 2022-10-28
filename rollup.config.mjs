@@ -1,8 +1,8 @@
 import typescript from '@rollup/plugin-typescript';
 import { babel } from '@rollup/plugin-babel';
-// import { terser } from "rollup-plugin-terser";
-// import { nodeResolve } from '@rollup/plugin-node-resolve';
-// import commonjs from '@rollup/plugin-commonjs';
+import { terser } from "rollup-plugin-terser";
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 export default [
     // ES Modules
@@ -18,34 +18,21 @@ export default [
         ],
     },
 
-    // // ES Modules Min
-    // {
-    //     input: 'lib/index-browser.ts',
-    //     output: {
-    //         file: 'bin/js-https.min.js',
-    //         format: 'es',
-    //     },
-    //     plugins: [
-    //         nodeResolve(),
-    //         typescript(),
-    //         commonjs(),
-    //         babel({ extensions: ['.ts'], babelHelpers: 'bundled' }),
-    //         terser()
-    //     ],
-    // },
-
     // UMD
     {
         input: 'lib/index.ts',
         output: {
-            file: 'bin/js-https.umd.js',
+            file: 'dist/js-https.min.js',
             format: 'umd',
-            name: 'js-https',
+            name: 'JsHttps',
             indent: false,
         },
         plugins: [
-            typescript(),
-            babel({ extensions: ['.ts'] })
+            nodeResolve({ browser: true }),
+            typescript({ declaration: false }),
+            commonjs(),
+            babel({ extensions: ['.ts'] }),
+            terser()
         ],
     },
 
@@ -58,7 +45,7 @@ export default [
         },
         plugins: [
             typescript(),
-            babel({ extensions: ['.ts']})
+            babel({ extensions: ['.ts'] })
         ],
     },
 ]

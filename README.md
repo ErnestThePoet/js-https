@@ -1,8 +1,16 @@
+# js-https
+
 This project aims to help HTTP Ajax data transport safer by simulating what HTTPS does.
+
+[![npm version](https://img.shields.io/npm/v/js-https.svg?style=flat-square)](https://www.npmjs.org/package/js-https)
+[![install size](https://img.shields.io/badge/dynamic/json?url=https://packagephobia.com/v2/api.json?p=js-https&query=$.install.pretty&label=install%20size&style=flat-square)](https://packagephobia.now.sh/result?p=js-https)
+[![npm downloads](https://img.shields.io/npm/dm/js-https.svg?style=flat-square)](https://npm-stat.com/charts.html?package=js-https)
 
 ## Getting Started
 
-First add dependency to your project:
+
+### Installing
+Using package manager:
 
 ```bash
 npm install js-https
@@ -10,7 +18,17 @@ npm install js-https
 yarn add js-https
 ```
 
-Now let's gain an insight as of how js-https works. This library attempts to imitate HTTPS with the following workflow:
+Import directly in browser:
+```html
+<script src="https://cdn.jsdelivr.net/npm/js-https@1.0.2/bin/js-https.min.js"></script>
+```
+Or
+```html
+<script src="https://unpkg.com/browse/js-https@1.0.2/bin/js-https.min.js"></script>
+```
+
+### Overview
+Now let's gain an insight as of how js-https works to provide safety. Js-https imitates HTTPS with the following workflow:
 ```
 BROWSER                                    SERVER
    |                                          |
@@ -48,12 +66,15 @@ BROWSER                                    SERVER
    
 ```
 
-As is illustrated, the way js-https works calls for a mutual-supporting backend. You can find a working backend demo [here](https://github.com/ErnestThePoet/js-https-backend-demo).
+The above steps 1) and 2) are not part of js-https and in practice needs certification verification to authenticate the validity of public key. To keep things simple, in this guide we will omit these steps and make public key directly available in our code.
 
+As is illustrated, in order to work properly, js-https requires the backend server to perform RSA-decryption and AES-encryption for each request. You can find a working backend demo [here](https://github.com/ErnestThePoet/js-https-backend-demo).
+
+### Generating RSA Keys
 To get an RSA public/private key pair, you can take advantage of OpenSSL:
 
 ```bash
-# 2048-bit keysize is recommended
+# 2048-bit key size is recommended
 openssl genrsa -out private-orig.pem 2048
 # If you use javax.crypto.Cipher in your backend, 
 # it is necessary to convert to PKCS#8 format key
@@ -64,6 +85,7 @@ openssl rsa -in private.pem -pubout -out public.pem
 
 Make sure to keep your **private key** a top-secret!
 
+### Usage
 Then the usage is as simple as follows:
 
 ```javascript
@@ -131,6 +153,7 @@ If you run our demo backend implementation, you will also see the decrypted requ
     Returns the decrypted response object.  
     If you call `decryptResponseData` without any prior call to `encryptRequestData`, there will be no symmetric key for decryption and this method will return `null`.
 
+### Note
 Each call to `encryptRequestData` will generate and store a random AES symmetric key, which will be used for decryption in the next call to `decryptResponseData`.  
 If you call `encryptRequestData` again before the previous one's decryption, then a new symmetric key will replace the previous one and you won't be able to decrypt the response cipher of the previous request.  
 
@@ -138,11 +161,15 @@ It's recommended to use a dedicated `JsHttps` object for each request, and call 
 
 ## Safety Details
 
-The AES encryption uses CBC mode with 128-bit keysize.  
-The RSA encryption used ECB mode with your given keysize. Typically 2048-bit keysize is recommended.
+The AES encryption uses CBC mode with 128-bit key size.  
+The RSA encryption used ECB mode with your given key size. Typically 2048-bit key size is recommended.
 
 ## Credits
 
 This utility wouldn't have been possible without these great open-source projects: [brix/crypto-js](https://github.com/brix/crypto-js), [entronad/
 crypto-es](https://github.com/entronad/crypto-es), [travist/jsencrypt](https://github.com/travist/jsencrypt), [
 sindresorhus/crypto-random-string](https://github.com/sindresorhus/crypto-random-string).
+
+## Notes on Build
+If you'd like to build js-https on your own, you may have to modify the source code of `jsencrypt`(current version is 3.3.0) to make the UMD version run in browser.  
+Go to `jsencrypt/lib/JSEncrypt.js`, and find `var version = process.env.npm_package_version;`. Change this line to `var version = "3.3.0";`. This removes the reference to the Node.js `process` object which causes error in browser.
