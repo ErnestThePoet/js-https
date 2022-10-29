@@ -1,14 +1,19 @@
 {
   "name": "js-https",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A JavaScript library to make HTTP Ajax safer.",
   "keywords": [
     "https",
     "security",
     "encryption",
+    "front-end",
+    "web",
     "crypto",
     "cipher",
-    "typescript"
+    "rsa",
+    "aes",
+    "typescript",
+    "javascript"
   ],
   "main": "bin/js-https.js",
   "module": "bin/js-https.js",

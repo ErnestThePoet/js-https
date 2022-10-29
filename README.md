@@ -21,7 +21,7 @@ yarn add js-https
 
 Or include directly in browser:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/js-https@1.0.6/dist/js-https.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-https@1.0.7/dist/js-https.min.js"></script>
 ```
 
 ### Overview
