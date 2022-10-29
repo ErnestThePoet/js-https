@@ -30,7 +30,7 @@ Now let's gain an insight into how js-https works to provide safety. Imitating H
 BROWSER                                    SERVER
    |                                          |
    | 1). Request site certificate             |
-   |  (including public key)                  |
+   |  (containing public key)                 |
    |----------------------------------------->|
    | 2). Site certificate                     |
    |<-----------------------------------------|
@@ -126,7 +126,7 @@ function safeRequest(){
 }
 ```
 
-With a correctly implemented backend server, you should see the actual response data in the browser console, just as what it is without js-https.  
+With a correctly implemented backend server, you should see the actual response data in your browser console when `safeRequest()` is invoked, just as what it is without js-https.  
 If you run either of our backend demo implementations, you will also see the decrypted request data in your Springboot or Django terminal.
 
 ## API
@@ -157,7 +157,7 @@ If you run either of our backend demo implementations, you will also see the dec
 Each call to `encryptRequestData` will generate and store a random AES symmetric key, which will be used for decryption in the next call to `decryptResponseData`.  
 If you call `encryptRequestData` again before the previous one's decryption, then a new symmetric key will replace the previous one and you won't be able to decrypt the response cipher of the previous request.  
 
-It's recommended to use a dedicated `JsHttps` object for each request, and call `encryptRequestData` and `decryptResponseData` once only.
+It's recommended to use a dedicated `JsHttps` object for each request, and call `encryptRequestData` and `decryptResponseData` once each only.
 
 ## Safety Details
 
