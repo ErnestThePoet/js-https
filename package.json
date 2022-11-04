@@ -1,7 +1,7 @@
 {
   "name": "js-https",
-  "version": "1.0.8",
-  "description": "A JavaScript library that makes HTTP Ajax safer.",
+  "version": "1.0.9",
+  "description": "A simple JavaScript library that makes HTTP Ajax safer.",
   "keywords": [
     "https",
     "security",

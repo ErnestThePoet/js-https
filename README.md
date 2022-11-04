@@ -1,6 +1,6 @@
 # js-https
 
-This project aims to make HTTP Ajax data transmission safer by imitating HTTPS.
+This little project aims to make HTTP Ajax data transmission safer with e-envelope, which is a much simplfied model of TLS used behind HTTPS.
 
 [![npm version](https://img.shields.io/npm/v/js-https.svg?style=flat-square)](https://www.npmjs.org/package/js-https)
 [![install size](https://img.shields.io/badge/dynamic/json?url=https://packagephobia.com/v2/api.json?p=js-https&query=$.install.pretty&label=install%20size&style=flat-square)](https://packagephobia.now.sh/result?p=js-https)
@@ -21,11 +21,11 @@ yarn add js-https
 
 Or include directly in browser:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/js-https@1.0.8/dist/js-https.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-https@1.0.9/dist/js-https.min.js"></script>
 ```
 
 ### Overview
-Now let's gain an insight into how js-https works to provide safety. Imitating HTTPS, js-https has the following workflow:
+Now let's gain an insight into how js-https works to provide safety. Using e-envelope, js-https has the following workflow:
 ```
 BROWSER                                    SERVER
    |                                          |
