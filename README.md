@@ -162,6 +162,7 @@ It's recommended to use a dedicated `JsHttps` object for each request, and call 
 ## Safety Notes
 
 This project is for **purely demonstrational purposes** and only provides limited safety for Ajax requests against eavesdroppers. Apparently, js-https cannot encrypt HTTP requests other than Ajax, like page resources(html, js, css...) that browser fetches itself. Also, it does not provide [Forward Secrecy](https://en.wikipedia.org/wiki/Forward_secrecy) and cannot defend [Man-in-the-middle attack](https://en.wikipedia.org/wiki/Man-in-the-middle_attack).  
+
 Inside js-https, the AES encryption uses CBC mode with 128-bit key size, with PKCS #7 padding mode.  
 The key size for RSA encryption should be at lease 2048 bits, as is [recommended](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57Pt3r1.pdf) by NIST since 2015. In js-https it should be just 2048 bits for performance.
 
