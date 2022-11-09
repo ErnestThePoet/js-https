@@ -1,6 +1,6 @@
 # js-https
 
-This little project aims to make HTTP Ajax data transmission safer with e-envelope, which is a much simplfied model of TLS used behind HTTPS.
+This little demonstrational project aims to make HTTP Ajax data transmission safer with e-envelope, which is a **much simplfied** model of TLS used behind HTTPS.
 
 [![npm version](https://img.shields.io/npm/v/js-https.svg?style=flat-square)](https://www.npmjs.org/package/js-https)
 [![install size](https://img.shields.io/badge/dynamic/json?url=https://packagephobia.com/v2/api.json?p=js-https&query=$.install.pretty&label=install%20size&style=flat-square)](https://packagephobia.now.sh/result?p=js-https)
@@ -21,11 +21,11 @@ yarn add js-https
 
 Or include directly in browser:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/js-https@1.0.9/dist/js-https.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-https@1.0.10/dist/js-https.min.js"></script>
 ```
 
 ### Overview
-Now let's gain an insight into how js-https works to provide safety. Using e-envelope, js-https has the following workflow:
+Now let's gain an insight into how js-https works based on e-envelope.
 ```
 BROWSER                                    SERVER
    |                                          |
@@ -159,9 +159,10 @@ If you call `encryptRequestData` again before the previous one's decryption, the
 
 It's recommended to use a dedicated `JsHttps` object for each request, and call `encryptRequestData` and `decryptResponseData` once each only.
 
-## Safety Details
+## Safety Notes
 
-The AES encryption uses CBC mode with 128-bit key size, with PKCS #7 padding mode.  
+This project is for **purely demonstrational purposes** and only provides limited safety for Ajax requests against eavesdroppers. Apparently, js-https cannot encrypt HTTP requests other than Ajax, like page resources(html, js, css...) that browser fetches itself. Also, it does not provide [Forward Secrecy](https://en.wikipedia.org/wiki/Forward_secrecy) and cannot defend [Man-in-the-middle attack](https://en.wikipedia.org/wiki/Man-in-the-middle_attack).  
+Inside js-https, the AES encryption uses CBC mode with 128-bit key size, with PKCS #7 padding mode.  
 The key size for RSA encryption should be at lease 2048 bits, as is [recommended](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57Pt3r1.pdf) by NIST since 2015. In js-https it should be just 2048 bits for performance.
 
 ## Credits
